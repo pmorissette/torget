@@ -23,6 +23,7 @@ module.exports = function(hash, filename, callback) {
     }
 
     // setup options
+    hash = hash.toUpperCase();
     options.url = "http://torcache.net/torrent/{0}.torrent".replace('{0}', hash);
 
     // create request and handle response
