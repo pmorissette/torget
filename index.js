@@ -13,7 +13,7 @@ var options = {
     headers: headers
 }
 
-exports.get = function(hash, filename, callback) {
+module.exports = function(hash, filename, callback) {
     // create writeStream
     var outStream = null;
     try {
