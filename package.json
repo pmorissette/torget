@@ -1,0 +1,25 @@
+{
+  "name": "torget",
+  "version": "0.0.1",
+  "description": "A Node.js torrent file downloader that sources torrent files from torcache.net based on their info hash values",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmorissette/torget.git"
+  },
+  "keywords": [
+    "torrent",
+    "info-hash",
+    "downloader",
+    "torcache",
+    "torcache.net"
+  ],
+  "author": "Philippe Morissette",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pmorissette/torget/issues"
+  }
+}
