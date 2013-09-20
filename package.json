@@ -1,6 +1,6 @@
 {
   "name": "torget",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Node.js torrent file downloader that sources torrent files from torcache.net based on their info hash values",
   "main": "index.js",
   "scripts": {
