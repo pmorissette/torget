@@ -14,14 +14,6 @@ var options = {
 }
 
 module.exports = function(hash, filename, callback) {
-    // create writeStream
-    var outStream = null;
-    try {
-        outStream = fs.createWriteStream(filename);
-    } catch(err) {
-        return callback(err);
-    }
-
     // setup options
     hash = hash.toUpperCase();
     options.url = "http://torcache.net/torrent/{0}.torrent".replace('{0}', hash);
@@ -34,6 +26,14 @@ module.exports = function(hash, filename, callback) {
             return callback(new Error('Status not 200'));
         }
 
+        // create writeStream
+        var outStream = null;
+        try {
+            outStream = fs.createWriteStream(filename);
+        } catch(err) {
+            return callback(err);
+        }
+
         var encoding = res.headers['content-encoding'];
         if (encoding == 'gzip') {
             res.pipe(zlib.createGunzip()).pipe(outStream)
@@ -42,13 +42,11 @@ module.exports = function(hash, filename, callback) {
         } else {
             res.pipe(outStream)
         }
+
+        return callback(null);
     });
 
     req.on('error', function(err) {
         return callback(err);
-    });
-
-    req.on('complete', function() {
-        return callback(null);
     });
 }
