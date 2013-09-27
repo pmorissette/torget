@@ -1,8 +1,11 @@
 {
   "name": "torget",
   "version": "0.0.2",
-  "description": "A Node.js torrent file downloader that sources torrent files from torcache.net based on their info hash values",
+  "description": "A Node.js torrent file picker and downloader",
   "main": "index.js",
+  "bin": {
+    "torget": "./app.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +17,7 @@
     "torrent",
     "info-hash",
     "downloader",
-    "torcache",
+    "torcache.js",
     "torcache.net"
   ],
   "author": "Philippe Morissette",
@@ -23,7 +26,12 @@
     "url": "https://github.com/pmorissette/torget/issues"
   },
   "dependencies": {
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "optimist": "~0.6.0",
+    "prompt": "~0.2.11",
+    "cli-table": "~0.2.0",
+    "torcache": "0.0.3",
+    "compress-buffer": "~1.2.0"
   },
   "devDependencies": {}
 }
