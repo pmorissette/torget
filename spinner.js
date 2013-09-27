@@ -6,16 +6,16 @@ exports.Spinner = function() {
         process.stdout.cursorTo(0);
         switch (this.cnt) {
             case 0:
-                process.stdout.write('/');
+                process.stdout.write('  /  ');
                 break;
             case 1:
-                process.stdout.write('-');
+                process.stdout.write('  -  ');
                 break;
             case 2:
-                process.stdout.write("\\");
+                process.stdout.write("  \\  ");
                 break;
             case 3:
-                process.stdout.write('|');
+                process.stdout.write('  |  ');
                 break;
         }
         this.cnt++;
