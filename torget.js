@@ -7,6 +7,8 @@ var Spinner = require('./spinner').Spinner;
 
 // automatically search, select and download torrent file
 var get = function(query, options, callback) {
+    if (!options) options = {}
+
     if (!callback) {
         callback = options;
         options = {};
@@ -26,6 +28,8 @@ var get = function(query, options, callback) {
 
 // automatically select torrent from search and return torrent object
 var select = function(query, options, callback) {
+    if (!options) options = {}
+
     // default for no options
     if (!callback) {
         callback = options;
@@ -42,6 +46,8 @@ var select = function(query, options, callback) {
 
 // interactively select torrent from search and return torrent object
 var interactive = function(query, options, callback) {
+    if (!options) options = {}
+
     // default for no options
     if (!callback) {
         callback = options;
@@ -121,6 +127,8 @@ var interactive = function(query, options, callback) {
 
 // fetch torrent file based on torrent object (result of select or interactive)
 var download = function(torrent, options, callback) {
+    if (!options) options = {}
+
     // error checking
     if (!torrent.hash)
         return callback(new Error('invalid torrent - no property hash'));
