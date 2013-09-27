@@ -99,3 +99,10 @@ Download a torrent file to disk using [torcache.js](https://github.com/pmorisset
 * `size` in bytes
 * `votes` # of votes
 * `verified` 1 or 0
+
+##TODO
+
+Tests!
+
+##LICENSE
+MIT.
