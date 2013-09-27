@@ -1,29 +1,77 @@
 torget
 ======
 
-A Node.js torrent file downloader that sources torrent files from torcache.net based on a torrent's info hash.
+A Node.js torrent file picker and downloader.
 
-##Examples
-For example, if you want to download the Ubuntu 13.04 64 bit torrent file and for some strange reason you happen to have
-the info hash, then you can do the following:
+
+##Quick Start
+For example, if you want to download a Ubuntu Server torrent file, you could do the following
 
 ````javascript
 var torget = require('torget');
 
-torget.get('e50331a0a8499d95ef8ebd546113cd021275c877', 'ubuntu-server-13.04-64.torrent' function(err) {
+torget('ubuntu server', null, function(err, filename) {
   if (err) {
     console.log(err);
+    process.exit(1);
   } else {
-    console.log('great success!');
+    console.log('great success! Saved as: ' + filename);
+    process.exit(0);
   }
 });
 ````
 
-Now most people don't really have the info hash handy, so in that case I recommend using another library
-for the torrent finding part of the job. The http://github.com/ProjectMoon/flux library comes to mind as 
-its search function returns a list of torrent objects with the infoHash property.
+Or, if you are using torget directly from the command line, you could do:
+    $ torget ubuntu server
 
-###torget(hash, path, callback)
-* `hash` a torrent info hash string
-* `filename` the path/filename the torrent file should be saved to
-* `callback` only one argument returned (err) - will be null if all went well
+This will launch an interactive mode where you can see a table with the search results and select which
+torrent to download. Ctrl+c to cancel. You can add the --auto command to avoid the interactive seleciton process.
+
+
+##Installation
+torget requires node.js and npm to run. To install, simply run:
+    npm install torget
+If you want a global install so that you can run torget from the shell anywhere on your system, then add the -g flag to the previous command:
+    npm install -g torget
+
+
+##API
+
+###torget(query, options, callback)
+Automatically search, select and download torrent file
+* `query` a search query
+* `options` options object described below - can be omitted
+* `callback` function(err, filename) - err is none on success.
+
+
+###torget.select(query, options, callback)
+Automatically search and select torrent, but return torrent object instead of downloading
+* `query` a search query
+* `options` options object described below - can be omitted
+* `callback` function(err, torrent) - err is none on success.
+
+
+###torget.interactive(query, options, callback)
+Search and select a torrent interactively, but return torrent object instead of downloading
+* `query` a search query
+* `options` options object described below - can be omitted
+* `callback` function(err, torrent) - err is none on success.
+
+
+###torget.search(query, callback)
+Search and return list of torrent objects
+* `query` a search query
+* `options` options object described below - can be omitted
+* `callback` function(err, results) - err is none on success.
+
+
+###torget.download(torrent, options, callback)
+Download a torrent file to disk using torcache.js.
+* `torrent` a torrent object yielded from select/interactive or search methods. Must contain hash and title.
+* `options` options object described below - can be omitted
+* `callback` function(err, filename) - err is none on success.
+
+###options
+* `n` max number of results to display
+* `p` torrent file download path
+* `a` auto donwload flag
