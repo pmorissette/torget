@@ -1,5 +1,6 @@
 var request = require('request');
 var uncompress = require('compress-buffer').uncompress;
+var _ = require('underscore');
 
 var url = 'http://kickass.to/json.php?q=';
 
@@ -36,7 +37,8 @@ exports.search = function(query, callback) {
 
             try {
                 var resp = JSON.parse(body);
-                return callback(null, resp.list);
+                var sorted = _.sortBy(resp.list, function(x) { return -x['votes']; });
+                return callback(null, sorted);
             } catch (parseError) {
                 return callback(parseError);
             }

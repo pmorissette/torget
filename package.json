@@ -31,7 +31,8 @@
     "prompt": "~0.2.11",
     "cli-table": "~0.2.0",
     "torcache": "0.0.3",
-    "compress-buffer": "~1.2.0"
+    "compress-buffer": "~1.2.0",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {}
 }
